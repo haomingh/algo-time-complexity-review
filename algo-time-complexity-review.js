@@ -1,127 +1,143 @@
 /////////// Prompt 1 ///////////
-/////////// time complexity: 
+// n is array length
 function findMax(array){
-  var max = -Infinity;
-  for (var i = 0; i < array.length; i++){
-    if (array[i] > max){
-      max = array[i];
+  var max = -Infinity; // 1
+  for (var i = 0; i < array.length; i++){ // n
+    if (array[i] > max){ // 1
+      max = array[i]; // 1
     }
   }
-  return max; 
+  return max; // 1
 }
+// Time Complexity: 1 + (( 1 + 1 ) * n) + 1 = 2n + 2 = O(n)
 
 
 /////////// Prompt 2 ///////////
-/////////// time complexity: 
+// n is array.length
 function contains(array, target){
-  return array.indexOf(target) > -1;
+  return array.indexOf(target) > -1; // Imagine how you would write indexOf. It's 2n + 2 = O(n).
 }
 
+function indexOf() {
+  var index = -1;
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] === target) {
+      return index;
+    }
+  }
+  return index;
+}
 
 /////////// Prompt 3 ///////////
-/////////// time complexity: 
 function partialContains(array, target, start){
-  return array.slice(start).indexOf(target) > -1;
+  return array.slice(start).indexOf(target) > -1; // O(n+n) = O(n) because we can do the 2 operations in order (aka in series)
 }
 
 
 /////////// Prompt 4 ///////////
-/////////// time complexity: 
+// n is array.length
 function square(array){
-  for (var i = 0; i < 3; i++){
-    array[i] = array[i] * array[i];
+  for (var i = 0; i < 3; i++){ // 3
+    array[i] = array[i] * array[i]; // 1
   }
-  return array;
+  return array; // 1
 }
+// 3 + 1 + 1 = O(1)
 
 /////////// Prompt 5 ///////////
-/////////// time complexity: 
+// n is array.length
 function repeat(array){
-  var repeat = [];
-  for (var j = 0; j < 10; j++){
-    repeat[j] = [];
-    for (var i = 0; i < array.length; i++){
-      repeat[j].push(array[i]);
+  var repeat = []; // 1
+  for (var j = 0; j < 10; j++){ // 1
+    repeat[j] = []; // 1
+    for (var i = 0; i < array.length; i++){ // n
+      repeat[j].push(array[i]); // 1, JS natively sticks the item on the end
     }
   }
-  return repeat; 
+  return repeat; // 1
 }
-//what if we replace 10 with a parameter? 
+// Time Complexity: 1 + 1 * (1 + n * 1) + 1 ??check again
 
 
 /////////// Prompt 6 ///////////
-/////////// time complexity: 
+// n is the smaller number
 function gcf(num1, num2){
-  if (num1 > num2){ //this ensures num1 is the smaller number
-    var temp = num1;
-    num1 = num2;
-    num2 = temp;
+  //this ensures num1 is the smaller number
+  if (num1 > num2){ // 1
+    var temp = num1; // 1
+    num1 = num2; // 1
+    num2 = temp; // 1
   }
-  for (var i = num1; i > 1; i--){
-    if (num1 % i === 0 && num2 % i === 0){
-      return i;
+  for (var i = num1; i > 1; i--){ // n
+    if (num1 % i === 0 && num2 % i === 0){ // 2
+      return i; // 1
     }
   }
-  return 1;
+  return 1; // 1
 }
+// Time Complexity: O(n)
 
 
 /////////// Prompt 7 ///////////
-/////////// time complexity: 
+// n is string.length
 function countChar(string){
-  var counts = {};
-  var currChar, currCharCount;
-  for (var i = 0; i < string.length; i++){
-    currChar = string[i];
-    currCharCount = 1;
-    for (var j = i+1; j < string.length; j++){
-      if (currChar === string[j]){
-        currCharCount++;
+  var counts = {}; //1
+  var currChar, currCharCount; //1
+
+  for (var i = 0; i < string.length; i++){ //n
+    currChar = string[i]; //1
+    currCharCount = 1; //1
+
+    for (var j = i+1; j < string.length; j++){ //.5 * n
+      if (currChar === string[j]){ //1
+        currCharCount++; //1
       }
     }
-    if (!counts.hasOwnProperty(currChar)){
-      counts[currChar] = currCharCount;
+
+    if (!counts.hasOwnProperty(currChar)){ //1
+      counts[currChar] = currCharCount; //1
     }
   }
-  return counts;
+  return counts; //1
 }
+// Time Complexity: O(n^2)
 
 
 /////////// Prompt 8 ///////////
-/////////// time complexity: 
+// n is num
 var factorial = function(num){
-  if (num < 0){
-    return;
+  if (num < 0){ //1
+    return; //1
   }
-  if (num === 0 || num === 1){
-    return 1; 
+  if (num === 0 || num === 1){ //1
+    return 1; //1
   } else {
-    return num * factorial(num-1);
+    return num * factorial(num-1); //n
   }
 }
-
+// Time Complexity: O(n)
 
 /////////// Prompt 9 ///////////
-/////////// time complexity: 
 function tournament(players){
-  var results;
-  if (players.length < 3){
-    return players[0];
+  var results; //1
+  if (players.length < 3){ //1
+    return players[0]; //1
   } else {
-    results = hotPotato(players); 
+    results = hotPotato(players); //1
     //assume hotPotato is a function where sets of
     //three players are teleported simultaneously
     //to a room with a potato. at the end of 5 minutes, 
     //the player in each room holding the potato is the winner 
     //and all winners get teleported to the results array 
-    return tournament(results);
+    return tournament(results); //logn, anytime you keep dividing by a constant each time
   }
 }
+// Time Complexity: O(logn)
+// For recusive problems, easiest to draw a decision tree
 
 
 
 /////////// Prompt 10 ///////////
-/////////// time complexity: 
 function allPasswords(allowedChars, maxLength){
   var results = [];
 
@@ -139,15 +155,17 @@ function allPasswords(allowedChars, maxLength){
   findPassword([]);
   return results;
 }
+// Time Complexity: O(c^n)
+// 3^1   -->   3^2 + 3^1   -->   3^3 + 3^2 + 3^1
 
 
 /////////// Prompt 11 ///////////
-/////////// time complexity: 
 function findColor(quadTree, coordinates){
   //a quad tree is a tree where each node has 4 children 
   //or no children, usually used to divide a two-dimensional
   //space into coordinates
   //coordinates is an array [xpos, ypos]
+  //This fn will find if the color is at a coordinate
 
   if (!Array.isArray(quadTree.color)){
     return quadTree.color;
@@ -185,6 +203,8 @@ function findColor(quadTree, coordinates){
     }
   }
 }
+// Time Complexity:
+// Find is log base 4 n, O(logn)
 
 
 
